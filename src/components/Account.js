@@ -5,7 +5,7 @@ const Account = () => {
 
     return(
         <div>
-            Account balance: {account.balance}
+            <p>Account balance: {account.balance}</p>
         </div>
     )
 }
