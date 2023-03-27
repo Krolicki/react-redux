@@ -1,0 +1,53 @@
+.reservation-container{
+    margin-inline: auto;
+    padding: 5vw;
+    display: flex;
+    min-height: 100vh;
+}
+.reservations{
+    width: 30%;
+    border-right: 2px solid grey;
+    padding-right: 8vw;
+    margin-right: 5vw;
+    position: relative;
+}
+.reservation-item{
+    background-color: rgb(204, 203, 203);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 20px;
+}
+.reservation-item p{
+    overflow-wrap: break-word;
+}
+.reservation-item button{
+    top: 0;
+    right: -6.5vw;
+    padding: 5px;
+    width: 5vw;
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.reservations span{
+    width: calc(100% - 1.5vw );
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+}
+.reservations span input{
+    width: calc(100% - 8vw);
+    padding: 5px;
+}
+.reservations span button{
+    width: 5vw;
+    margin-left: 2.5vw;
+    padding: 7px 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
