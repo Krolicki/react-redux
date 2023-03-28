@@ -1,12 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import accountReducer from './features/accountSlice'
-import reservationSlice from './features/reservationSlice'
-import themeSlice from './features/themeSlice'
+import customerIDReducer from './features/customerIDSlice'
+import customerReducer from './features/customerSlice'
+import reservationReducer from './features/reservationSlice'
+import themeReducer from './features/themeSlice'
 
 export const store = configureStore({
     reducer:{
         account: accountReducer,
-        theme: themeSlice,
-        reservation: reservationSlice,
+        theme: themeReducer,
+        reservation: reservationReducer,
+        customer: customerReducer,
+        customerID: customerIDReducer,
     }
 })

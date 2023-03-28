@@ -13,10 +13,15 @@
 }
 .reservation-item{
     background-color: rgb(204, 203, 203);
-    padding: 20px;
     border-radius: 10px;
     position: relative;
     margin-bottom: 20px;
+    cursor: pointer;
+}
+.reservation-name{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
 }
 .reservation-item p{
     overflow-wrap: break-word;
@@ -40,14 +45,41 @@
     display: block;
 }
 .reservations span input{
-    width: calc(100% - 8vw);
+    width: calc(100% - 6.5vw);
     padding: 5px;
 }
 .reservations span button{
     width: 5vw;
-    margin-left: 2.5vw;
+    margin-left: 1.5vw;
     padding: 7px 5px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
+}
+.customers{
+    flex: 1;
+    padding-right: 8vw;
+}
+.customers .reservation-item{
+    padding: 20px;
+}
+.customers .reservation-item > p{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.food{
+    display: flex;
+    gap: .5vw;
+    margin-top: .5vw;
+}
+.add-food{
+    display: block;
+    margin-top: .5vw;
+}
+.add-food input{
+    padding: 5px;
+    margin-right: .5vw;
+}
+.add-food button{
+    position: unset;
 }
