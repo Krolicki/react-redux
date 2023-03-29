@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addReservation } from '../../store/features/reservationSlice'
+import { nextCustomer } from '../../store/features/customerIDSlice'
 import CustomerItem from './CustomerItem'
 import './Reservation.css'
 import ReservationItem from './ReservationItem'
@@ -9,6 +10,7 @@ const Reservation = () => {
     const dispatch = useDispatch()
     const reservations = useSelector((state) => state.reservation.value)
     const customers = useSelector((state) => state.customer.value)
+    const customerID = useSelector(state => state.customerID.value)
 
     const reservationRef = useRef()
 
@@ -18,7 +20,12 @@ const Reservation = () => {
                 <h2>Reservations:</h2>
                 {reservations.map((reserv, index) => {
                     return (
-                        <ReservationItem name={reserv} index={index} key={index} />
+                        <ReservationItem 
+                            name={reserv.name} 
+                            index={index}
+                            id={reserv.id} 
+                            key={index} 
+                        />
                     )
                 })
                 }
@@ -30,8 +37,14 @@ const Reservation = () => {
                     <button
                         type='button'
                         onClick={() => {
-                            dispatch(addReservation(reservationRef.current.value))
+                            dispatch(
+                                addReservation({
+                                    id: customerID,
+                                    name: reservationRef.current.value,
+                                })
+                            )
                             reservationRef.current.value = ""
+                            dispatch(nextCustomer())
                         }}
                     >
                         Add

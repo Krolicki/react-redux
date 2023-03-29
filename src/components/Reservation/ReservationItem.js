@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { nextCustomer } from '../../store/features/customerIDSlice'
+import { useDispatch } from 'react-redux'
 import { addCustomer } from '../../store/features/customerSlice'
 import { deleteReservation } from '../../store/features/reservationSlice'
 import './Reservation.css'
 
-const ReservationItem = ({ name, index }) => {
+const ReservationItem = ({ name, index, id }) => {
     const dispatch = useDispatch()
-    const customerID = useSelector(state => state.customerID.value)
 
     const deleteItem = () => {
         dispatch(deleteReservation(index))
@@ -17,12 +15,9 @@ const ReservationItem = ({ name, index }) => {
             <div
                 className='reservation-name'
                 onClick={() => {
-                    dispatch(addCustomer({
-                        id: customerID,
-                        name,
-                        food: []
-                    }))
-                    dispatch(nextCustomer())
+                    dispatch(
+                        addCustomer(id, name)
+                    )
                     deleteItem()
                 }}
             >

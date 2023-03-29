@@ -8,8 +8,19 @@ export const customerSlice = createSlice({
     name: "customer",
     initialState,
     reducers: {
-        addCustomer: (state, action) => {
-            state.value.push(action.payload)
+        addCustomer: {
+            reducer(state, action) {
+                state.value.push(action.payload)
+            },
+            prepare(id, name) {
+                return {
+                    payload: {
+                        id,
+                        name,
+                        food: []
+                    }
+                }
+            }
         },
         deleteCustomer: (state, action) => {
             state.value.splice(action.payload, 1)
