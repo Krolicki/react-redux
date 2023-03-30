@@ -1,6 +1,7 @@
 // /import { useSelector } from 'react-redux'
 import './App.css'
-import Reservation from './components/Reservation/Reservation'
+import Posts from './components/Posts/Posts'
+//import Reservation from './components/Reservation/Reservation'
 // import Account from './components/Account'
 // import ChangeBalance from './components/ChangeBalance'
 // import ChangeTheme from './components/ChangeTheme'
@@ -17,7 +18,8 @@ function App() {
       <Account />
       <ChangeBalance />
       <ChangeTheme /> */}
-      <Reservation />
+      {/* <Reservation /> */}
+      <Posts />
     </div>
   )
 }

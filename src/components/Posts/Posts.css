@@ -1,0 +1,18 @@
+.posts-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-inline: auto;
+    padding: 10vw 5vw;
+    max-width: 900px;
+}
+.posts-wrapper h2{
+    margin-bottom: 20px;
+}
+.posts-wrapper article{
+    padding: 1vw;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.354);
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
