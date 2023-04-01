@@ -16,3 +16,30 @@
     margin-bottom: 20px;
     border-radius: 10px;
 }
+.add-post-wrapper h2{
+    margin-bottom: 20px;
+}
+.add-post-wrapper label{
+    display: block;
+}
+.add-post-wrapper input,
+.add-post-wrapper textarea{
+    width: 100%;
+    padding: 1vw;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.add-post-wrapper textarea{
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 10vh;
+    max-height: 30vh;
+}
+.add-post-wrapper button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
