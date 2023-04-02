@@ -26,6 +26,7 @@
 .add-post-wrapper textarea{
     width: 100%;
     padding: 1vw;
+    font-size: 1.1rem;
     margin-bottom: 20px;
     border-radius: 10px;
     border: 1px solid black;
@@ -42,4 +43,9 @@
     border: 1px solid black;
     margin-bottom: 20px;
     cursor: pointer;
+}
+.post-info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }

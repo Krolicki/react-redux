@@ -3,18 +3,22 @@ import { useDispatch } from "react-redux"
 import { addPost } from "../../store/features/posts/postsSlice"
 
 const AddPost = () => {
+    const userRef = useRef()
     const titleRef = useRef()
     const contentRef = useRef()
 
     const dispatch = useDispatch()
 
     const savePost = () => {
+        const author = userRef.current.value
         const title = titleRef.current.value
         const content = contentRef.current.value
-        if (title && content) {
+
+        if (author && title && content) {
             dispatch(
-                addPost(title, content)
+                addPost(title, content, author)
             )
+            userRef.current.value =""
             titleRef.current.value = ""
             contentRef.current.value = ""
         }
@@ -24,6 +28,12 @@ const AddPost = () => {
         <section className="add-post-wrapper">
             <h2>Add Post</h2>
             <form>
+                <label htmlFor="username">Your name</label>
+                <input
+                    type="text"
+                    name="username"
+                    ref={userRef}
+                />
                 <label htmlFor="title">Post title</label>
                 <input
                     type="text"
