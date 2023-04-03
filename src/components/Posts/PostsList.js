@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { getAllPosts } from "../../store/features/posts/postsSlice"
 import TimeAgo from "./TimeAgo"
+import Reactions from "./Reactions"
 
 
 const PostsList = () => {
@@ -18,6 +19,7 @@ const PostsList = () => {
                 </span>
                 <TimeAgo timestapm={post.date} />
             </p>
+            <Reactions reactions={post.reactions} postID={post.id}/>
         </article>
     ))
 

@@ -4,7 +4,7 @@
     justify-content: center;
     width: 100%;
     margin-inline: auto;
-    padding: 10vw 5vw;
+    padding: 5vh 5vw;
     max-width: 900px;
 }
 .posts-wrapper h2{
@@ -48,4 +48,15 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+}
+.reactions{
+    margin-top: 10px;
+}
+.reactions button{
+    padding: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
 }
