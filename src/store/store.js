@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import postsReducer from './features/posts/postsSlice'
+import usersReducer from './features/posts/usersSlice'
 // import accountReducer from './features/accountSlice'
 // import themeReducer from './features/themeSlice'
 
@@ -17,5 +18,6 @@ export const store = configureStore({
         // customerID: customerIDReducer,
 
         posts: postsReducer,
+        users: usersReducer,
     }
 })

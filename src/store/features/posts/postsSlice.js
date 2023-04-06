@@ -69,7 +69,6 @@ export const postsSlice = createSlice({
                     return post
                 })
                 state.posts = state.posts.concat(fetchedPosts)
-                console.log(state.posts)
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = "failed"
