@@ -8,7 +8,7 @@ const Post = ({ post }) => {
             <h3>{post.title}</h3>
             <p>{post.body.substring(0, 150)}</p>
             <p className="post-info">
-                <PostAuthor userID={post.userId} />
+                <PostAuthor userID={post.userId} author={post.author}/>
                 <TimeAgo timestapm={post.date} />
             </p>
             <Reactions reactions={post.reactions} postID={post.id} />
