@@ -4,7 +4,7 @@ import { getAllUsers } from "../../store/features/posts/usersSlice"
 const PostAuthor = ({ userID, author }) => {
     const users = useSelector(getAllUsers)
     let postAuthor
-
+    
     if(author){
         postAuthor = author
     }

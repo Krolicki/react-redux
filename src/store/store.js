@@ -3,6 +3,8 @@ import createSagaMiddleware from 'redux-saga'
 import postsReducer from './features/posts/postsSlice'
 import usersReducer from './features/posts/usersSlice'
 import usersSaga from './usersSaga'
+import postsSaga from './postsSaga'
+
 // import accountReducer from './features/accountSlice'
 // import themeReducer from './features/themeSlice'
 
@@ -21,10 +23,11 @@ export const store = configureStore({
         // customer: customerReducer,
         // customerID: customerIDReducer,
 
-        //posts: postsReducer,
+        posts: postsReducer,
         users: usersReducer,
     },
     middleware: [saga]
 })
 
 saga.run(usersSaga)
+saga.run(postsSaga)

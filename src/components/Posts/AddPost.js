@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
-import { addNewPost } from "../../store/features/posts/postsSlice"
+import { addPost } from "../../store/features/posts/postsSlice"
+
 
 const AddPost = () => {
     const userRef = useRef()
@@ -20,8 +21,9 @@ const AddPost = () => {
             try{
                 setAddRequestStatus('pending')
                 dispatch(
-                    addNewPost({title, body, author})
-                ).unwrap()
+                    addPost({title, body, author})
+                    //addNewPost({title, body, author})
+                )
                 userRef.current.value =""
                 titleRef.current.value = ""
                 contentRef.current.value = ""

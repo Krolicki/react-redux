@@ -11,13 +11,12 @@ const Posts = () => {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getUsersFetch())
-        console.log(users)
-    },[])
+    },[dispatch])
     
     return(
         <div className='posts-container'>
             <AddPost />
-            {/* <PostsList /> */}
+            <PostsList />
         </div>
     )
 }
