@@ -1,14 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 //import axios from 'axios'
 import { sub } from 'date-fns'
 
 //const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
-const initialState = {
-    posts: [],
+const postsAdapter = createEntityAdapter({
+    sortComparer: (a, b) => b.date.localeCompare(a.date)
+})
+
+const initialState = postsAdapter.getInitialState({
     status: 'idle',
     error: null
-}
+})
 
 // export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 //     try {
@@ -48,7 +51,7 @@ export const postsSlice = createSlice({
                 }
                 return post
             })
-            state.posts = state.posts.concat(fetchedPosts)
+            postsAdapter.upsertMany(state, fetchedPosts)
         },
         getPostsRejected: (state, action) => {
             state.status = "failed"
@@ -62,7 +65,7 @@ export const postsSlice = createSlice({
                 up: 0,
                 down: 0
             }
-            state.posts.push(action.payload)
+            postsAdapter.addOne(state, action.payload)
         },
         // addPost: {
         //     reducer(state, action) {
@@ -86,7 +89,7 @@ export const postsSlice = createSlice({
         // },
         addReaction(state, action) {
             const { postID, reaction } = action.payload
-            const postToAdd = state.posts.find(post => post.id === postID)
+            const postToAdd = state.entities[postID]
             if (postToAdd) {
                 postToAdd.reactions[reaction]++
             }
@@ -126,7 +129,12 @@ export const postsSlice = createSlice({
     //}
 })
 
-export const getAllPosts = state => state.posts.posts
+export const {
+    selectAll: getAllPosts,
+    selectById: getPostById,
+    selectIds: getPostsIds
+} = postsAdapter.getSelectors(state => state.posts)
+
 export const getPostsStatus = state => state.posts.status
 export const getPostsError = state => state.posts.error
 

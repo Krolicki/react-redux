@@ -1,8 +1,12 @@
 import TimeAgo from "./TimeAgo"
 import Reactions from "./Reactions"
 import PostAuthor from "./PostAuthor"
+import { useSelector } from "react-redux"
+import { getPostById } from "../../store/features/posts/postsSlice"
 
-const Post = ({ post }) => {
+const Post = ({ postId }) => {
+    const post = useSelector(state => getPostById(state, postId))
+
     return (
         <article>
             <h3>{post.title}</h3>
