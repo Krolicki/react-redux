@@ -1,16 +1,29 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 //import axios from 'axios'
 import { sub } from 'date-fns'
+import { RootState } from '../../store';
 
 //const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
-const postsAdapter = createEntityAdapter({
+type Post = {
+    id: number
+    userId: number
+    title: string
+    body: string
+    date: string
+    reactions: {
+      up: number
+      down: number
+    }
+  }
+
+const postsAdapter = createEntityAdapter<Post>({
     sortComparer: (a, b) => b.date.localeCompare(a.date)
 })
 
 const initialState = postsAdapter.getInitialState({
-    status: 'idle',
-    error: null
+    status: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+    error: null as string | null
 })
 
 // export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
@@ -40,7 +53,7 @@ export const postsSlice = createSlice({
         getPostsFetch: (state) => {
             state.status = "loading"
         },
-        getPostsSucceeded: (state, action) => {
+        getPostsSucceeded: (state, action : PayloadAction<Post[]>) => {
             state.status = "succeeded"
             let minutes = 1
             const fetchedPosts = action.payload.map(post => {
@@ -53,12 +66,12 @@ export const postsSlice = createSlice({
             })
             postsAdapter.upsertMany(state, fetchedPosts)
         },
-        getPostsRejected: (state, action) => {
+        getPostsRejected: (state, action: PayloadAction<{ error: { message: string } }>) => {
             state.status = "failed"
-            state.error = action.error.message
+            state.error = action.payload.error.message
         },
-        addPost: (state,action) => {},
-        setPost: (state, action) => {
+        addPost: (state,action : PayloadAction<Post>) => {},
+        setPost: (state, action : PayloadAction<Post>) => {
             action.payload.userId = Number(action.payload.userId)
             action.payload.date = (new Date()).toISOString()
             action.payload.reactions = {
@@ -87,7 +100,7 @@ export const postsSlice = createSlice({
         //         }
         //     }
         // },
-        addReaction(state, action) {
+        addReaction(state, action :  PayloadAction<{ postID: string; reaction: "up" | "down" }>) {
             const { postID, reaction } = action.payload
             const postToAdd = state.entities[postID]
             if (postToAdd) {
@@ -133,10 +146,10 @@ export const {
     selectAll: getAllPosts,
     selectById: getPostById,
     selectIds: getPostsIds
-} = postsAdapter.getSelectors(state => state.posts)
+} = postsAdapter.getSelectors((state : RootState) => state.posts)
 
-export const getPostsStatus = state => state.posts.status
-export const getPostsError = state => state.posts.error
+export const getPostsStatus = (state : RootState) => state.posts.status
+export const getPostsError = (state : RootState) => state.posts.error
 
 export const {
     getPostsFetch,

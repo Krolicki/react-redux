@@ -1,7 +1,12 @@
 import { useSelector } from "react-redux"
 import { getAllUsers } from "../../store/features/posts/usersSlice"
 
-const PostAuthor = ({ userID, author }) => {
+type PostAuthorProps = {
+    userID: number
+    author: string
+}
+
+const PostAuthor = ({ userID, author } : PostAuthorProps) => {
     const users = useSelector(getAllUsers)
     let postAuthor
     
@@ -9,8 +14,8 @@ const PostAuthor = ({ userID, author }) => {
         postAuthor = author
     }
     else{
-        let foundAuthor = users.find(user => user.id === userID)
-        postAuthor = foundAuthor.name
+        let foundAuthor = users.find((user : any) => user.id === userID)
+        postAuthor = foundAuthor?.name
     }
     
     return (

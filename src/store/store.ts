@@ -2,8 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import postsReducer from './features/posts/postsSlice'
 import usersReducer from './features/posts/usersSlice'
-import usersSaga from './usersSaga'
-import postsSaga from './postsSaga'
+import rootSaga from './rootSaga'
 
 // import accountReducer from './features/accountSlice'
 // import themeReducer from './features/themeSlice'
@@ -29,5 +28,6 @@ export const store = configureStore({
     middleware: [saga]
 })
 
-saga.run(usersSaga)
-saga.run(postsSaga)
+export type RootState = ReturnType<typeof store.getState>;
+
+saga.run(rootSaga)
