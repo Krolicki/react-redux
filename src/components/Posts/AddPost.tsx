@@ -4,18 +4,18 @@ import { addPost } from "../../store/features/posts/postsSlice"
 
 
 const AddPost = () => {
-    const userRef = useRef()
-    const titleRef = useRef()
-    const contentRef = useRef()
+    const userRef = useRef<HTMLInputElement>(null)
+    const titleRef = useRef<HTMLInputElement>(null)
+    const contentRef = useRef<HTMLTextAreaElement>(null)
 
     const [addRequestStatus, setAddRequestStatus] = useState('idle')
 
     const dispatch = useDispatch()
 
     const savePost = () => {
-        const author = userRef.current.value
-        const title = titleRef.current.value
-        const body = contentRef.current.value
+        const author = userRef.current?.value
+        const title = titleRef.current?.value
+        const body = contentRef.current?.value
 
         if (author && title && body && addRequestStatus === 'idle') {
             try{
@@ -55,7 +55,6 @@ const AddPost = () => {
                 />
                 <label htmlFor="content">Post content</label>
                 <textarea
-                    type="text"
                     name="content"
                     ref={contentRef}
                 />

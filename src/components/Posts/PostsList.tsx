@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux"
-import { getPostsError, getPostsIds, getPostsStatus } from "../../store/features/posts/postsSlice"
+import { StatusType, getPostsError, getPostsIds, getPostsStatus } from "../../store/features/posts/postsSlice"
 import Post from "./Post"
-
 
 const PostsList = () => {
     const orderedPostsIds = useSelector(getPostsIds)
-    const postsStatus = useSelector(getPostsStatus)
+    const postsStatus = useSelector(getPostsStatus) as StatusType
     const postsError = useSelector(getPostsError)
 
     let content

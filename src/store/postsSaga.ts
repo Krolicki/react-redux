@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { getPostsSucceeded, setPost } from './features/posts/postsSlice'
+import { Post, getPostsSucceeded, setPost } from './features/posts/postsSlice'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
@@ -11,7 +12,7 @@ function* workGetPosts() : Generator<any, any, any>{
     yield put(getPostsSucceeded(posts))
 }
 
-function* workAddPost(action : any): Generator<any, void, AxiosResponse<any>> {
+function* workAddPost(action : PayloadAction<Post>): Generator<any, void, AxiosResponse<any>> {
     try {
         const response: AxiosResponse = yield axios.post(POSTS_URL, action.payload)
         yield put(setPost(response.data))

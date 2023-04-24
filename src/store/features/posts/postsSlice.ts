@@ -5,7 +5,7 @@ import { RootState } from '../../store';
 
 //const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
-type Post = {
+export type Post = {
     id: number
     userId: number
     title: string
@@ -15,14 +15,23 @@ type Post = {
       up: number
       down: number
     }
+    author?: string
   }
+
+  export type AddPostType = {
+    title: string
+    body: string
+    author: string
+}
+
+export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 const postsAdapter = createEntityAdapter<Post>({
     sortComparer: (a, b) => b.date.localeCompare(a.date)
 })
 
 const initialState = postsAdapter.getInitialState({
-    status: 'idle' as 'idle' | 'loading' | 'succeeded' | 'failed',
+    status: 'idle' as StatusType,
     error: null as string | null
 })
 
@@ -70,7 +79,7 @@ export const postsSlice = createSlice({
             state.status = "failed"
             state.error = action.payload.error.message
         },
-        addPost: (state,action : PayloadAction<Post>) => {},
+        addPost: (state,action : PayloadAction<AddPostType>) => {},
         setPost: (state, action : PayloadAction<Post>) => {
             action.payload.userId = Number(action.payload.userId)
             action.payload.date = (new Date()).toISOString()
