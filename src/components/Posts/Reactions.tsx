@@ -2,12 +2,20 @@ import { useDispatch } from "react-redux"
 import { addReaction } from "../../store/features/posts/postsSlice"
 import { useState } from "react"
 
-const Reactions = ({ reactions, postID }) => {
+type ReactionsProps = {
+    reactions: {
+        up: number
+        down: number
+    } | undefined
+    postID: number | undefined
+}
+
+const Reactions = ({ reactions, postID } : ReactionsProps) => {
     const [reactionAdded, setReactionAdded] = useState(false)
 
     const dispatch = useDispatch()
 
-    const handleReaction = (reaction) => {
+    const handleReaction = (reaction :  "up" | "down") => {
         if(!reactionAdded){
             dispatch(
                 addReaction({ postID, reaction})
@@ -22,13 +30,13 @@ const Reactions = ({ reactions, postID }) => {
                 type="button"
                 onClick={()=> handleReaction("up")}
             >
-                &#128077;{reactions.up}
+                &#128077;{reactions?.up}
             </button>
             <button
                 type="button"
                 onClick={()=> handleReaction("down")}
             >
-                &#128078;{reactions.down}
+                &#128078;{reactions?.down}
             </button>
         </div>
     )

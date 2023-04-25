@@ -2,8 +2,8 @@ import { useSelector } from "react-redux"
 import { UserType, getAllUsers } from "../../store/features/posts/usersSlice"
 
 type PostAuthorProps = {
-    userID: number
-    author: string
+    userID: number | undefined
+    author: string | undefined
 }
 
 

@@ -109,9 +109,11 @@ export const postsSlice = createSlice({
         //         }
         //     }
         // },
-        addReaction(state, action :  PayloadAction<{ postID: string; reaction: "up" | "down" }>) {
+        addReaction(state, action :  PayloadAction<{ postID: number | undefined; reaction: "up" | "down" }>) {
             const { postID, reaction } = action.payload
-            const postToAdd = state.entities[postID]
+            let postToAdd
+            if(postID)
+                postToAdd = state.entities[postID]
             if (postToAdd) {
                 postToAdd.reactions[reaction]++
             }
