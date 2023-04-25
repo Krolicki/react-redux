@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+type customerID = {
+    value: number
+}
+
+const initialState : customerID= {
     value: 0
 }
 

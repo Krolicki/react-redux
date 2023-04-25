@@ -1,6 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+
+
+type Customer = {
+    id: string;
+    name: string;
+    food: string[];
+}
+
+type CustomerState = {
+    value: Customer[];
+}
+
+const initialState : CustomerState = {
     value: []
 }
 
@@ -9,7 +21,7 @@ export const customerSlice = createSlice({
     initialState,
     reducers: {
         addCustomer: {
-            reducer(state, action) {
+            reducer(state, action : PayloadAction<Customer>) {
                 state.value.push(action.payload)
             },
             prepare(id, name) {
@@ -22,10 +34,10 @@ export const customerSlice = createSlice({
                 }
             }
         },
-        deleteCustomer: (state, action) => {
+        deleteCustomer: (state, action : PayloadAction<number>) => {
             state.value.splice(action.payload, 1)
         },
-        addFood: (state, action) => {
+        addFood: (state, action : PayloadAction<{id: string, food: string}>) => {
             state.value.forEach(customer => {
                 if(customer.id === action.payload.id)
                     customer.food.push(action.payload.food)

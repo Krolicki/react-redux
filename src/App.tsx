@@ -3,7 +3,7 @@ import { getPostsStatus, getPostsFetch } from './store/features/posts/postsSlice
 import { useEffect } from 'react'
 import './App.css'
 import Posts from './components/Posts/Posts'
-//import Reservation from './components/Reservation/Reservation'
+import Reservation from './components/Reservation/Reservation'
 // import Account from './components/Account'
 // import ChangeBalance from './components/ChangeBalance'
 // import ChangeTheme from './components/ChangeTheme'
@@ -29,7 +29,7 @@ function App() {
       <Account />
       <ChangeBalance />
       <ChangeTheme /> */}
-      {/* <Reservation /> */}
+      <Reservation />
       <Posts />
     </div>
   )

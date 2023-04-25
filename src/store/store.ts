@@ -7,9 +7,9 @@ import rootSaga from './rootSaga'
 // import accountReducer from './features/accountSlice'
 // import themeReducer from './features/themeSlice'
 
-// import customerIDReducer from './features/customerIDSlice'
-// import customerReducer from './features/customerSlice'
-// import reservationReducer from './features/reservationSlice'
+import customerIDReducer from './features/customerIDSlice'
+import customerReducer from './features/customerSlice'
+import reservationReducer from './features/reservationSlice'
 
 const saga = createSagaMiddleware()
 
@@ -18,9 +18,9 @@ export const store = configureStore({
         //account: accountReducer,
         //theme: themeReducer,
 
-        // reservation: reservationReducer,
-        // customer: customerReducer,
-        // customerID: customerIDReducer,
+        reservation: reservationReducer,
+        customer: customerReducer,
+        customerID: customerIDReducer,
 
         posts: postsReducer,
         users: usersReducer,

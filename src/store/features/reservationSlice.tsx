@@ -1,6 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+type Reservation = {
+    id: string;
+    name: string;
+}
+
+type ReservationState = {
+    value: Reservation[];
+}
+
+const initialState : ReservationState= {
     value: []
 }
 
