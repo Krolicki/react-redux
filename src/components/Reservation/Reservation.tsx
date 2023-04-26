@@ -5,14 +5,15 @@ import { nextCustomer } from '../../store/features/customerIDSlice'
 import CustomerItem from './CustomerItem'
 import './Reservation.css'
 import ReservationItem from './ReservationItem'
+import { RootState } from '../../store/store'
 
 const Reservation = () => {
     const dispatch = useDispatch()
-    const reservations = useSelector((state) => state.reservation.value)
-    const customers = useSelector((state) => state.customer.value)
-    const customerID = useSelector(state => state.customerID.value)
+    const reservations = useSelector((state : RootState) => state.reservation.value)
+    const customers = useSelector((state: RootState) => state.customer.value)
+    const customerID = useSelector((state : RootState) => state.customerID.value)
 
-    const reservationRef = useRef()
+    const reservationRef = useRef<HTMLInputElement>(null)
 
     return (
         <div className='reservation-container'>
@@ -40,10 +41,11 @@ const Reservation = () => {
                             dispatch(
                                 addReservation({
                                     id: customerID,
-                                    name: reservationRef.current.value,
+                                    name: reservationRef.current?.value,
                                 })
                             )
-                            reservationRef.current.value = ""
+                            if(reservationRef.current)
+                                reservationRef.current.value = ""
                             dispatch(nextCustomer())
                         }}
                     >

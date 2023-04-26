@@ -3,7 +3,13 @@ import { addCustomer } from '../../store/features/customerSlice'
 import { deleteReservation } from '../../store/features/reservationSlice'
 import './Reservation.css'
 
-const ReservationItem = ({ name, index, id }) => {
+type ReservationItemProps = {
+    name: string
+    index: number
+    id: string
+}
+
+const ReservationItem = ({ name, index, id } : ReservationItemProps) => {
     const dispatch = useDispatch()
 
     const deleteItem = () => {

@@ -3,10 +3,17 @@ import { useDispatch } from 'react-redux'
 import { addFood, deleteCustomer } from '../../store/features/customerSlice'
 import './Reservation.css'
 
-const CustomerItem = ({ name, id, food, index }) => {
+type CustomerItemProps = {
+    name: string
+    id: string
+    food: string[]
+    index: number
+}
+
+const CustomerItem = ({ name, id, food, index } : CustomerItemProps) => {
     const dispatch = useDispatch()
 
-    const foodRef = useRef()
+    const foodRef = useRef<HTMLInputElement>(null)
 
     const deleteItem = () => {
         dispatch(deleteCustomer(index))
@@ -28,8 +35,10 @@ const CustomerItem = ({ name, id, food, index }) => {
                 <button
                     type='button'
                     onClick={()=>{
-                        dispatch(addFood({id, food: foodRef.current.value}))
-                        foodRef.current.value = ""
+                        if(foodRef.current){
+                            dispatch(addFood({id, food: foodRef.current.value}))
+                            foodRef.current.value = ""
+                        }
                     }}
                 >
                     Add
