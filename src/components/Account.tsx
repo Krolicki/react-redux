@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux'
+import { RootState } from '../store/store'
 
 const Account = () => {
-    const account = useSelector((state) => state.account)
+    const account = useSelector((state : RootState) => state.account)
 
     return(
         <div>

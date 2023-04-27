@@ -5,7 +5,18 @@ import { add, subtract } from '../store/features/accountSlice'
 const ChangeBalance = () => {
     const dispatch = useDispatch()
 
-    const numberRef = useRef()
+    const numberRef = useRef<HTMLInputElement>(null)
+
+    function handleBalanceChange( action : "add" | "subtract") {
+        if(numberRef.current){
+            if(action === "add")
+                dispatch(add(numberRef.current.value))
+            else
+                dispatch(subtract(numberRef.current.value))
+            
+            numberRef.current.value = ""
+        }
+    }
 
     return (
         <div>
@@ -13,7 +24,7 @@ const ChangeBalance = () => {
             <button
                 type="button"
                 onClick={() => {
-                    dispatch(add(numberRef.current.value))
+                    handleBalanceChange("add")
                 }}
             >
                 Add
@@ -21,7 +32,7 @@ const ChangeBalance = () => {
             <button
                 type="button"
                 onClick={() => {
-                    dispatch(subtract(numberRef.current.value))
+                    handleBalanceChange("subtract")
                 }}
             >
                 Subtract

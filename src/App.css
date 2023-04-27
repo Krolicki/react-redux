@@ -4,3 +4,11 @@
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.balance-n-theme{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-block: 5vh;
+}

@@ -5,12 +5,18 @@ import { changeColor } from '../store/features/themeSlice'
 const ChangeTheme = () => {
     const dispatch = useDispatch()
 
-    const colorRef = useRef()
+    const colorRef = useRef<HTMLInputElement>(null)
 
     return (
         <div>
             <input type="color" ref={colorRef} />
-            <button type="button" onClick={() => { dispatch(changeColor(colorRef.current.value))}}>Change color</button>
+            <button
+                type="button"
+                onClick={() => {
+                    dispatch(changeColor(colorRef.current?.value))
+                }}>
+                Change color
+            </button>
         </div>
     )
 }

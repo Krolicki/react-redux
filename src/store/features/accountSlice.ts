@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+type Account = {
+    balance: number
+}
+
+const initialState : Account = {
     balance: 0
 }
 

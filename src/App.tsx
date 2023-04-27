@@ -4,13 +4,14 @@ import { useEffect } from 'react'
 import './App.css'
 import Posts from './components/Posts/Posts'
 import Reservation from './components/Reservation/Reservation'
-// import Account from './components/Account'
-// import ChangeBalance from './components/ChangeBalance'
-// import ChangeTheme from './components/ChangeTheme'
+import Account from './components/Account'
+import ChangeBalance from './components/ChangeBalance'
+import ChangeTheme from './components/ChangeTheme'
+import { RootState } from "./store/store"
 
 
 function App() {
-  //const themeColor = useSelector((state) => state.theme.color )
+  const themeColor = useSelector((state : RootState) => state.theme.color )
   const dispatch = useDispatch()
 
   const postsStatus = useSelector(getPostsStatus)
@@ -23,12 +24,14 @@ function App() {
 
   return (
     <div className="App">
-      {/* <h1 style={{ color: themeColor }}>
-        React Redux
-      </h1>
-      <Account />
-      <ChangeBalance />
-      <ChangeTheme /> */}
+      <div className="balance-n-theme">
+        <h1 style={{ color: themeColor }}>
+          React Redux
+        </h1>
+        <Account />
+        <ChangeBalance />
+        <ChangeTheme />
+      </div>
       <Reservation />
       <Posts />
     </div>
