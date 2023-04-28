@@ -4,31 +4,14 @@ import { RootState } from '../../store'
 
 const USERS_URL = 'https://jsonplaceholder.typicode.com/users'
 
-export type UserType = {
-    id: number;
-    name: string;
-    username: string;
-    email: string;
-    address: {
-      street: string;
-      suite: string;
-      city: string;
-      zipcode: string;
-      geo: {
-        lat: string;
-        lng: string;
-      }
-    };
-    phone: string;
-    website: string;
-    company: {
-      name: string;
-      catchPhrase: string;
-      bs: string;
-    };
-  }
+interface User {
+  id: number;
+  name: string;
+}
+ 
+type UserType<T extends User> = T[]
 
-const initialState = [] as UserType[]
+const initialState = [] as UserType<User>
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
     try {

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { Post, getPostsSucceeded, setPost } from './features/posts/postsSlice'
+import { getPostsSucceeded, setPost } from './features/posts/postsSlice'
 import { PayloadAction } from '@reduxjs/toolkit'
 
 
@@ -12,7 +12,7 @@ function* workGetPosts() : Generator<any, any, any>{
     yield put(getPostsSucceeded(posts))
 }
 
-function* workAddPost(action : PayloadAction<Post>): Generator<any, void, AxiosResponse<any>> {
+function* workAddPost(action : PayloadAction): Generator<any, void, AxiosResponse<any>> {
     try {
         const response: AxiosResponse = yield axios.post(POSTS_URL, action.payload)
         yield put(setPost(response.data))

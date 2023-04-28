@@ -5,7 +5,7 @@ import { RootState } from '../../store';
 
 //const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts'
 
-export type Post = {
+export interface Post {
     id: number
     userId: number
     title: string
@@ -16,7 +16,9 @@ export type Post = {
       down: number
     }
     author?: string
-  }
+}
+
+export type PostType<T extends Post> = T
 
   export type AddPostType = {
     title: string
@@ -26,7 +28,7 @@ export type Post = {
 
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
-const postsAdapter = createEntityAdapter<Post>({
+const postsAdapter = createEntityAdapter<PostType<Post>>({
     sortComparer: (a, b) => b.date.localeCompare(a.date)
 })
 
